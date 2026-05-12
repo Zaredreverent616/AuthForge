@@ -1,0 +1,283 @@
+/* Welcome / onboarding — runs in a regular browser tab on first install. */
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.welcome {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 48px 32px 64px;
+}
+
+/* ---- Hero ---- */
+.hero {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  margin-bottom: 16px;
+}
+.hero-icon {
+  width: 96px;
+  height: 96px;
+  flex-shrink: 0;
+}
+.hero-text {
+  flex: 1 1 auto;
+}
+.hero h1 {
+  margin: 0 0 8px;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.hero-tagline {
+  margin: 0 0 14px;
+  color: var(--text-muted);
+  font-size: 15px;
+}
+.hero-actions {
+  display: flex;
+  gap: 10px;
+  margin: 18px 0 12px;
+}
+.hero-actions .btn {
+  font-size: 13px;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+.hero-actions .btn.ghost {
+  display: inline-flex;
+  align-items: center;
+  color: var(--text-muted);
+}
+.hero-meta {
+  font-size: 11.5px;
+  color: var(--text-faint);
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.hero-meta .dot { color: var(--text-faint); }
+
+/* ---- Kicker ---- */
+.kicker {
+  margin: 32px 0 48px;
+  padding: 18px 22px;
+  border-left: 3px solid var(--accent);
+  background: var(--bg-elevated);
+  border-radius: var(--radius-md);
+  color: var(--text);
+  font-size: 14.5px;
+  line-height: 1.6;
+}
+
+/* ---- Section headings ---- */
+.welcome h2 {
+  margin: 48px 0 18px;
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: -0.005em;
+}
+
+/* ---- Tour tiles ---- */
+.tile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 14px;
+}
+.tile {
+  padding: 16px 18px 18px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+.tile-icon {
+  font-size: 22px;
+  margin-bottom: 4px;
+}
+.tile h3 {
+  margin: 4px 0 6px;
+  font-size: 14.5px;
+  font-weight: 700;
+}
+.tile p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 12.5px;
+  line-height: 1.55;
+}
+.tile code {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  background: var(--bg-codeblock);
+  padding: 1px 5px;
+  border-radius: 3px;
+  color: var(--text);
+}
+
+/* ---- Workflows ---- */
+.workflow-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.workflow {
+  display: flex;
+  gap: 14px;
+  padding: 14px 16px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  align-items: flex-start;
+}
+.workflow-tag {
+  flex: 0 0 90px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding-top: 2px;
+}
+.workflow p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+.workflow strong { color: var(--text); }
+
+/* ---- Permissions ---- */
+.perms-intro {
+  color: var(--text-muted);
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+.perms-intro code {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  background: var(--bg-codeblock);
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+.perms-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 10px;
+}
+.perm {
+  padding: 12px 14px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius-md);
+}
+.perm.wide {
+  grid-column: 1 / -1;
+}
+.perm code {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent);
+}
+.perm p {
+  margin: 6px 0 0;
+  font-size: 12.5px;
+  color: var(--text-muted);
+}
+.perm p em { color: var(--text); font-style: normal; font-weight: 600; }
+
+/* ---- Privacy ---- */
+.privacy-sentence {
+  padding: 18px 22px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  color: var(--text);
+  font-size: 14px;
+  margin: 0;
+}
+.privacy-sentence code {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  background: var(--bg-codeblock);
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+/* ---- Footer ---- */
+.footer {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.footer-actions {
+  display: flex;
+  gap: 10px;
+}
+.footer-meta {
+  font-size: 12px;
+  color: var(--text-faint);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.footer-meta a {
+  color: var(--accent);
+  text-decoration: none;
+}
+.footer-meta a:hover { text-decoration: underline; }
+
+/* ---- Buttons (reuse theme.css .btn but make hero-size variants pop) ---- */
+.btn {
+  background: var(--bg-elevated);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 6px 12px;
+  font-size: 12px;
+  cursor: pointer;
+  font-family: inherit;
+}
+.btn:hover {
+  background: var(--bg-row-hover);
+}
+.btn.primary {
+  background: var(--accent);
+  color: var(--text-inverse);
+  border-color: var(--accent);
+  font-weight: 600;
+}
+.btn.primary:hover {
+  background: var(--accent-hover);
+}
+.btn.ghost {
+  background: transparent;
+  border-color: transparent;
+  color: var(--text-muted);
+}
+.btn.ghost:hover {
+  background: var(--bg-row-hover);
+  color: var(--text);
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 640px) {
+  .welcome { padding: 32px 18px 48px; }
+  .hero { flex-direction: column; align-items: flex-start; }
+  .hero-icon { width: 72px; height: 72px; }
+  .hero h1 { font-size: 26px; }
+  .workflow { flex-direction: column; gap: 4px; }
+}

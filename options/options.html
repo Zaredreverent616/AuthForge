@@ -1,0 +1,508 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AuthForge — Options</title>
+    <link rel="stylesheet" href="../shared/theme.css" />
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <header class="options-header">
+      <div class="brand">
+        <img src="../icons/icon-32.png" alt="" width="28" height="28" />
+        <div>
+          <div class="brand-title">AuthForge</div>
+          <div class="brand-sub">Settings &amp; tools</div>
+        </div>
+      </div>
+      <nav class="section-nav">
+        <a href="#settings" class="nav-link active" data-target="settings">Settings</a>
+        <a href="#advanced" class="nav-link" data-target="advanced">Advanced</a>
+        <a href="#profiles" class="nav-link" data-target="profiles">Profiles</a>
+        <a href="#snapshots" class="nav-link" data-target="snapshots">Snapshots</a>
+        <a href="#about" class="nav-link" data-target="about">About</a>
+      </nav>
+    </header>
+
+    <main class="options-main">
+      <!-- ============================== SETTINGS ============================== -->
+      <section id="settings" class="panel">
+        <header class="panel-head">
+          <h2>Settings</h2>
+          <p class="panel-sub">Defaults applied across the popup, side panel, and DevTools panel.</p>
+        </header>
+
+        <div class="setting-row">
+          <div class="setting-meta">
+            <div class="setting-label">Theme</div>
+            <div class="setting-desc">Match your system, or force a fixed theme.</div>
+          </div>
+          <div class="setting-control">
+            <select id="opt-theme" class="input">
+              <option value="auto">Auto (system)</option>
+              <option value="light">Light</option>
+              <option value="dark">Dark</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="setting-row">
+          <div class="setting-meta">
+            <div class="setting-label">Show expired cookies</div>
+            <div class="setting-desc">When off, cookies whose expiration is in the past are hidden from the list.</div>
+          </div>
+          <div class="setting-control">
+            <label class="switch">
+              <input type="checkbox" id="opt-show-expired" />
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="setting-row">
+          <div class="setting-meta">
+            <div class="setting-label">Default export format</div>
+            <div class="setting-desc">Pre-selected in the export dialog. You can still change it per-export.</div>
+          </div>
+          <div class="setting-control">
+            <select id="opt-default-export" class="input">
+              <option value="json">JSON</option>
+              <option value="netscape">Netscape (cookies.txt)</option>
+              <option value="header">Cookie header line</option>
+              <option value="curl">cURL command</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="setting-row">
+          <div class="setting-meta">
+            <div class="setting-label">Confirm bulk deletes</div>
+            <div class="setting-desc">Ask before clearing all cookies / storage for a domain.</div>
+          </div>
+          <div class="setting-control">
+            <label class="switch">
+              <input type="checkbox" id="opt-confirm-delete" />
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="setting-row danger-zone">
+          <div class="setting-meta">
+            <div class="setting-label">Reset all settings</div>
+            <div class="setting-desc">Restores the defaults. Snapshots are kept.</div>
+          </div>
+          <div class="setting-control">
+            <button id="btn-reset-settings" class="btn danger">Reset</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================== ADVANCED ============================== -->
+      <section id="advanced" class="panel hidden">
+        <header class="panel-head">
+          <h2>Advanced</h2>
+          <p class="panel-sub">
+            Power-user knobs for detection, network capture, and security testing.
+            Sensible defaults are baked in — only touch these if you have a specific
+            workflow that needs customisation.
+          </p>
+        </header>
+
+        <!-- UI subsection -->
+        <h3 class="adv-h">User interface</h3>
+
+        <div class="setting-row">
+          <div class="setting-meta">
+            <div class="setting-label">Hide empty storage tabs</div>
+            <div class="setting-desc">
+              Hide Local / Session / IndexedDB tabs in the popup when they have no entries.
+              Most sites only use one of these — hiding the empty ones keeps the tab bar uncluttered.
+              Turn off to always see every tab.
+            </div>
+          </div>
+          <div class="setting-control">
+            <label class="switch"><input type="checkbox" id="opt-hide-empty-tabs" /><span class="slider"></span></label>
+          </div>
+        </div>
+
+        <div class="setting-row">
+          <div class="setting-meta">
+            <div class="setting-label">Compact mode</div>
+            <div class="setting-desc">Tighter row spacing — fits more entries on screen at the cost of a busier look.</div>
+          </div>
+          <div class="setting-control">
+            <label class="switch"><input type="checkbox" id="opt-compact" /><span class="slider"></span></label>
+          </div>
+        </div>
+
+        <!-- Detection subsection -->
+        <h3 class="adv-h">Detection patterns</h3>
+        <p class="adv-sub">
+          AuthForge ships with conservative defaults for each pattern. Add your own
+          (one per line) to extend coverage to in-house naming conventions, custom auth
+          libraries, or framework-specific endpoints.
+        </p>
+
+        <div class="adv-field">
+          <label class="field-label" for="opt-refresh-patterns">Refresh-token name patterns (regex, one per line)</label>
+          <textarea id="opt-refresh-patterns" class="textarea code small"
+            placeholder="^myapp_rt$&#10;^session\..*refresh$"></textarea>
+          <div class="field-help">Matched against cookie / storage key names. Defaults catch <code>refresh_token</code>, MSAL conventions, etc.</div>
+        </div>
+
+        <div class="adv-field">
+          <label class="field-label" for="opt-auth-headers">Custom auth header names (one per line)</label>
+          <textarea id="opt-auth-headers" class="textarea code small"
+            placeholder="X-My-Custom-Token&#10;X-Internal-Session"></textarea>
+          <div class="field-help">In addition to defaults (X-API-Key, X-Auth-Token, X-CSRF-Token, etc.). Effective on next network capture.</div>
+        </div>
+
+        <div class="adv-field">
+          <label class="field-label" for="opt-endpoint-patterns">Token endpoint URL patterns (regex, one per line)</label>
+          <textarea id="opt-endpoint-patterns" class="textarea code small"
+            placeholder="/api/v\d+/internal/auth&#10;auth\.mycompany\.com/issue"></textarea>
+          <div class="field-help">In addition to defaults (/oauth/token, MSAL, Auth0, Keycloak, Okta, etc.). Effective on next network capture.</div>
+        </div>
+
+        <div class="adv-field">
+          <label class="field-label" for="opt-field-names">Custom token field names in response bodies (one per line)</label>
+          <textarea id="opt-field-names" class="textarea code small"
+            placeholder="api_session&#10;customAuthBlob"></textarea>
+          <div class="field-help">For the DevTools / debugger body scanner. Defaults: <code>access_token</code>, <code>refresh_token</code>, <code>id_token</code>, plus camelCase variants.</div>
+        </div>
+
+        <!-- Network capture subsection -->
+        <h3 class="adv-h">Network capture</h3>
+
+        <div class="setting-row">
+          <div class="setting-meta">
+            <div class="setting-label">Auto-start recording</div>
+            <div class="setting-desc">Network capture begins automatically when a new browser session starts. Off keeps it paused until you click Start.</div>
+          </div>
+          <div class="setting-control">
+            <label class="switch"><input type="checkbox" id="opt-auto-record" /><span class="slider"></span></label>
+          </div>
+        </div>
+
+        <div class="setting-row">
+          <div class="setting-meta">
+            <div class="setting-label">Buffer size</div>
+            <div class="setting-desc">Maximum number of auth-relevant entries to keep in memory. Older entries are dropped first.</div>
+          </div>
+          <div class="setting-control">
+            <input type="number" id="opt-buffer-size" class="input" min="50" max="5000" step="50" style="width: 100px" />
+          </div>
+        </div>
+
+        <div class="setting-row">
+          <div class="setting-meta">
+            <div class="setting-label">Persist captures across browser sessions</div>
+            <div class="setting-desc">
+              ⚠ Stores network captures in <code>chrome.storage.local</code> (which survives browser restart) instead of
+              <code>chrome.storage.session</code> (wiped on browser close). Captures contain raw tokens — only enable
+              if you're working on a single-user device and want your last-session data available later.
+            </div>
+          </div>
+          <div class="setting-control">
+            <label class="switch"><input type="checkbox" id="opt-persist-captures" /><span class="slider"></span></label>
+          </div>
+        </div>
+
+        <!-- Security testing subsection -->
+        <h3 class="adv-h">Security testing</h3>
+
+        <div class="adv-field">
+          <label class="field-label" for="opt-jwt-wordlist">Custom HMAC brute-force wordlist (one secret per line)</label>
+          <textarea id="opt-jwt-wordlist" class="textarea code small"
+            placeholder="our-rotated-secret-2024&#10;internal-hmac-key&#10;..."></textarea>
+          <div class="field-help">Merged with the ~50 baked-in defaults. Useful for adding secrets you recovered from leaked source or env files.</div>
+        </div>
+
+        <div class="setting-row">
+          <div class="setting-meta">
+            <div class="setting-label">Max brute-force attempts</div>
+            <div class="setting-desc">Caps the number of candidates tried in one run. The default is plenty for built-in wordlists; raise for big custom dictionaries.</div>
+          </div>
+          <div class="setting-control">
+            <input type="number" id="opt-brute-max" class="input" min="50" max="50000" step="50" style="width: 120px" />
+          </div>
+        </div>
+
+        <!-- Data management subsection -->
+        <h3 class="adv-h">Data management</h3>
+
+        <div class="setting-row">
+          <div class="setting-meta">
+            <div class="setting-label">Clear network capture buffer</div>
+            <div class="setting-desc">Removes every captured request. AuthForge starts fresh on the next request.</div>
+          </div>
+          <div class="setting-control">
+            <button id="btn-clear-network" class="btn danger">Clear captures</button>
+          </div>
+        </div>
+
+        <div class="setting-row">
+          <div class="setting-meta">
+            <div class="setting-label">Clear all snapshots</div>
+            <div class="setting-desc">Removes every saved domain snapshot. Profiles are kept.</div>
+          </div>
+          <div class="setting-control">
+            <button id="btn-clear-snapshots" class="btn danger">Clear snapshots</button>
+          </div>
+        </div>
+
+        <div class="setting-row">
+          <div class="setting-meta">
+            <div class="setting-label">Clear all profiles</div>
+            <div class="setting-desc">Removes every saved credential profile. Snapshots are kept.</div>
+          </div>
+          <div class="setting-control">
+            <button id="btn-clear-profiles" class="btn danger">Clear profiles</button>
+          </div>
+        </div>
+
+        <div class="setting-row">
+          <div class="setting-meta">
+            <div class="setting-label">Export everything (JSON)</div>
+            <div class="setting-desc">All settings + profiles + snapshots in one JSON file. Sharable; re-importable with the matching button.</div>
+          </div>
+          <div class="setting-control">
+            <button id="btn-export-all" class="btn">Export all</button>
+          </div>
+        </div>
+
+        <div class="setting-row">
+          <div class="setting-meta">
+            <div class="setting-label">Import everything (JSON)</div>
+            <div class="setting-desc">Restores from a previous Export All file. Existing entries with the same id are overwritten.</div>
+          </div>
+          <div class="setting-control">
+            <label class="btn ghost">
+              Import…
+              <input id="opt-import-all" type="file" accept=".json,application/json" hidden />
+            </label>
+          </div>
+        </div>
+
+        <div id="advanced-save-status" class="advanced-save-status"></div>
+      </section>
+
+      <!-- ============================== PROFILES ============================== -->
+      <section id="profiles" class="panel hidden">
+        <header class="panel-head">
+          <h2>Profiles</h2>
+          <p class="panel-sub">
+            Named, reusable credential bundles for cross-environment testing. Capture the auth state of one site,
+            apply it to another (with domain remapping), or import from a teammate's HAR file.
+            Export to cURL, Postman, HTTPie, or <code>.env</code> for use in your test pipelines.
+          </p>
+        </header>
+
+        <div class="profile-toolbar">
+          <input id="prof-search" class="input" type="search" placeholder="Search profiles…" />
+          <button id="btn-prof-capture" class="btn primary">Capture current tab</button>
+          <label class="btn">
+            Import HAR…
+            <input id="prof-import-har" type="file" accept=".har,application/json" hidden />
+          </label>
+          <label class="btn ghost">
+            Import JSON…
+            <input id="prof-import-json" type="file" accept=".json,application/json" hidden />
+          </label>
+        </div>
+
+        <div id="prof-list" class="prof-list"></div>
+
+        <!-- Apply / Edit / Export modal -->
+        <div id="prof-modal" class="modal-backdrop hidden">
+          <div class="modal">
+            <header class="modal-head">
+              <h3 id="prof-modal-title">Profile</h3>
+              <button class="btn icon" id="prof-modal-close" aria-label="Close">×</button>
+            </header>
+
+            <div class="modal-tabs">
+              <button class="modal-tab active" data-modal-tab="apply">Apply</button>
+              <button class="modal-tab" data-modal-tab="edit">Edit</button>
+              <button class="modal-tab" data-modal-tab="export">Export</button>
+            </div>
+
+            <!-- ---- Apply panel ---- -->
+            <div class="modal-body modal-panel" data-modal-panel="apply">
+              <div class="field">
+                <label class="field-label" for="apply-target-url">Target URL</label>
+                <input id="apply-target-url" class="input" type="url" placeholder="https://staging.example.com" />
+                <div class="field-help">Cookies will be scoped to this URL. Defaults to the active tab.</div>
+              </div>
+
+              <div class="field-row">
+                <div class="field">
+                  <label class="field-label" for="apply-source-host">Source host</label>
+                  <input id="apply-source-host" class="input" type="text" placeholder="dev.example.com" />
+                </div>
+                <div class="field">
+                  <label class="field-label" for="apply-target-host">Target host</label>
+                  <input id="apply-target-host" class="input" type="text" placeholder="staging.example.com" readonly />
+                </div>
+              </div>
+
+              <label class="checkbox-row">
+                <input type="checkbox" id="apply-remap" />
+                <span><strong>Remap cookie domains</strong> from source to target host
+                  (suffix replacement)</span>
+              </label>
+              <label class="checkbox-row">
+                <input type="checkbox" id="apply-clear-first" />
+                <span><strong>Clear current state first</strong> — wipe cookies + localStorage +
+                  sessionStorage before applying</span>
+              </label>
+              <label class="checkbox-row">
+                <input type="checkbox" id="apply-include-storage" checked />
+                <span>Include localStorage / sessionStorage entries (cookies only otherwise)</span>
+              </label>
+
+              <div id="apply-result" class="apply-result"></div>
+
+              <div class="modal-actions">
+                <button id="btn-apply" class="btn primary">Apply profile</button>
+                <button class="btn ghost" data-close-modal>Cancel</button>
+              </div>
+            </div>
+
+            <!-- ---- Edit panel ---- -->
+            <div class="modal-body modal-panel hidden" data-modal-panel="edit">
+              <div class="field">
+                <label class="field-label" for="edit-name">Name</label>
+                <input id="edit-name" class="input" type="text" />
+              </div>
+              <div class="field">
+                <label class="field-label" for="edit-description">Description</label>
+                <input id="edit-description" class="input" type="text" placeholder="What is this profile for?" />
+              </div>
+              <div class="field">
+                <label class="field-label" for="edit-source-url">Source URL</label>
+                <input id="edit-source-url" class="input" type="url" />
+              </div>
+              <div class="field">
+                <label class="field-label" for="edit-notes">Notes</label>
+                <textarea id="edit-notes" class="textarea" rows="3"
+                  placeholder="Optional. Anything you need to remember about this profile."></textarea>
+              </div>
+              <details class="advanced-edit">
+                <summary>Advanced — raw JSON</summary>
+                <textarea id="edit-raw" class="textarea code"></textarea>
+                <div class="field-help">
+                  Editing the raw bundle directly. Be careful: this overwrites the profile on save.
+                </div>
+              </details>
+              <div class="modal-actions">
+                <button id="btn-save-edits" class="btn primary">Save changes</button>
+                <button class="btn ghost" data-close-modal>Cancel</button>
+              </div>
+            </div>
+
+            <!-- ---- Export panel ---- -->
+            <div class="modal-body modal-panel hidden" data-modal-panel="export">
+              <div class="field">
+                <label class="field-label" for="export-format">Format</label>
+                <select id="export-format" class="input"></select>
+                <div class="field-help" id="export-format-help"></div>
+              </div>
+              <div class="field">
+                <label class="field-label" for="export-target-url">Target URL (for cURL / HTTPie)</label>
+                <input id="export-target-url" class="input" type="url" />
+              </div>
+              <textarea id="export-preview" class="textarea code export-preview" readonly></textarea>
+              <div class="modal-actions">
+                <button id="btn-export-copy" class="btn primary">Copy</button>
+                <button id="btn-export-download" class="btn">Download</button>
+                <button class="btn ghost" data-close-modal>Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================== SNAPSHOTS ============================== -->
+      <section id="snapshots" class="panel hidden">
+        <header class="panel-head">
+          <h2>Snapshots</h2>
+          <p class="panel-sub">
+            Saved domain states — cookies, localStorage, sessionStorage and IndexedDB databases —
+            captured from the popup or DevTools panel. Restore them from the same surfaces.
+          </p>
+        </header>
+
+        <div class="snapshot-toolbar">
+          <input id="snap-search" class="input" type="search" placeholder="Search snapshots…" />
+          <button id="btn-snap-export-all" class="btn">Export all (JSON)</button>
+          <label class="btn ghost">
+            Import…
+            <input id="snap-import-file" type="file" accept="application/json,.json" hidden />
+          </label>
+        </div>
+
+        <div id="snap-list" class="snap-list"></div>
+      </section>
+
+      <!-- ============================== ABOUT ============================== -->
+      <section id="about" class="panel hidden">
+        <header class="panel-head">
+          <h2>About</h2>
+          <p class="panel-sub">AuthForge — an advanced storage and token editor.</p>
+        </header>
+
+        <div class="about-grid">
+          <div class="about-card">
+            <div class="about-card-label">Version</div>
+            <div class="about-card-value" id="about-version">—</div>
+          </div>
+          <div class="about-card">
+            <div class="about-card-label">Manifest</div>
+            <div class="about-card-value">MV3 service worker</div>
+          </div>
+          <div class="about-card">
+            <div class="about-card-label">Surfaces</div>
+            <div class="about-card-value">Popup · Side panel · DevTools · Options</div>
+          </div>
+        </div>
+
+        <h3 class="about-h">Capabilities</h3>
+        <ul class="about-list">
+          <li>Full CRUD for cookies on any URL, with every attribute exposed (Domain, Path, SameSite, Secure, HttpOnly, host-only, expiration).</li>
+          <li>Read and edit the active page's <code>localStorage</code>, <code>sessionStorage</code>, and IndexedDB records — including binary-safe serialization of <code>Date</code>, <code>Blob</code>, and <code>ArrayBuffer</code>.</li>
+          <li>JWT detection across all storage with a one-click decoder, plus a standalone HS256/384/512 signer in this page.</li>
+          <li>Refresh-token heuristic flag any key whose name looks like a long-lived credential.</li>
+          <li>Domain snapshots: capture the full state of a site in one click, restore later, export as JSON.</li>
+          <li>Undo / redo on every destructive edit during a session (Ctrl+Z, Ctrl+Shift+Z).</li>
+          <li>Import / export as JSON, Netscape <code>cookies.txt</code>, raw <code>Cookie:</code> header, or a ready-to-paste cURL command.</li>
+        </ul>
+
+        <h3 class="about-h">Keyboard shortcuts</h3>
+        <ul class="about-list compact">
+          <li><kbd>Ctrl</kbd>+<kbd>F</kbd> — focus search</li>
+          <li><kbd>Ctrl</kbd>+<kbd>Z</kbd> / <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Z</kbd> — undo / redo</li>
+          <li><kbd>R</kbd> — refresh current tab's data</li>
+        </ul>
+
+        <h3 class="about-h">Privacy</h3>
+        <p class="about-p">
+          AuthForge runs entirely in your browser. No data is sent to any server. The HMAC signing
+          in the JWT playground uses the Web Crypto API locally.
+        </p>
+
+        <h3 class="about-h">Welcome page</h3>
+        <p class="about-p">
+          The welcome tour shown on first install. Re-open it any time.
+        </p>
+        <button class="btn ghost" id="open-welcome" style="margin-top: 4px;">Show welcome page</button>
+      </section>
+    </main>
+
+    <div id="toast-stack" class="toast-stack" aria-live="polite"></div>
+
+    <script type="module" src="options.js"></script>
+  </body>
+</html>

@@ -1,0 +1,103 @@
+/* Popup-specific layout.
+ *
+ * AuthForge runs in three visual modes:
+ *   1. Browser-action popup — Chrome enforces ~800x600 max
+ *   2. "Open in full window" — chrome.windows.create('popup'), wider
+ *   3. Side panel — vertical layout, browser-granted dimensions
+ *
+ * The base popup uses a fixed 720px width so the layout is stable. When
+ * opened with ?wide=1, popup.js adds .wide-mode to <body> and we drop the
+ * fixed width to let the content fill the window.
+ */
+
+html, body {
+  width: 720px;
+  min-height: 480px;
+  max-height: 600px;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+main#app {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+main#app .tab-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-elevated);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+}
+.brand svg {
+  color: var(--accent);
+}
+.brand img {
+  /* Keep crisp at small toolbar sizes */
+  image-rendering: -webkit-optimize-contrast;
+  display: block;
+}
+
+.header-actions {
+  display: flex;
+  gap: 4px;
+}
+
+/* Side panel: more vertical room */
+@media (min-height: 700px) {
+  html, body { max-height: 100vh; min-height: 100vh; }
+}
+
+/* ---- Wide mode: opened in a standalone window via ⤢ button --------------
+ *
+ * popup.js reads ?wide=1 from the URL and adds .wide-mode to <body>. We
+ * drop the fixed 720px and let the content fill the window with a
+ * comfortable max-width on the body so rows stay readable.
+ */
+
+html.wide-mode, html.wide-mode body {
+  width: 100vw;
+  min-width: 720px;
+  max-width: 100vw;
+  min-height: 100vh;
+  max-height: 100vh;
+  height: 100vh;
+}
+
+html.wide-mode main#app {
+  width: 100%;
+}
+
+html.wide-mode .tab-body {
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+html.wide-mode .jwt-finding-json {
+  max-height: 360px;
+}

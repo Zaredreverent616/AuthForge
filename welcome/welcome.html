@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title data-i18n="welcomeTitle">Welcome to AuthForge</title>
+    <link rel="stylesheet" href="../shared/theme.css" />
+    <link rel="stylesheet" href="welcome.css" />
+    <script type="module" src="welcome.js"></script>
+  </head>
+  <body>
+    <main class="welcome">
+      <section class="hero">
+        <img src="../icons/icon-128.png" alt="" class="hero-icon" />
+        <div class="hero-text">
+          <h1 data-i18n="welcomeTitle">Welcome to AuthForge</h1>
+          <p class="hero-tagline" data-i18n="welcomeTagline">
+            Inspect, modify, and replay every authentication artifact your
+            browser sees — cookies, web storage, IndexedDB, JWTs, and live
+            network traffic — from one keyboard-friendly UI.
+          </p>
+          <div class="hero-actions">
+            <button class="btn primary" id="open-popup" data-i18n="welcomeOpenAuthForge">Open AuthForge ›</button>
+            <a class="btn ghost" href="#tour" data-i18n="welcomeTakeTour">Take the tour</a>
+          </div>
+          <div class="hero-meta">
+            <span data-i18n="welcomeFooterVersion">Version 1.0.0</span>
+            <span class="dot">·</span>
+            <span data-i18n="welcomeMetaNoTel">No telemetry · all state local · open source</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="kicker" data-i18n="welcomeKicker">
+        AuthForge unifies what would otherwise take six separate tools — DevTools'
+        Application tab, a JWT debugger, a request re-issuer, a network
+        sniffer, a JWT attack generator, and a cookie editor — into one
+        coherent workspace.
+      </section>
+
+      <section id="tour" class="tour">
+        <h2 data-i18n="welcomeWhatYouCanDo">What you can do</h2>
+
+        <div class="tile-grid">
+          <article class="tile">
+            <div class="tile-icon">🍪</div>
+            <h3 data-i18n="welcomeTileCookiesTitle">Cookies</h3>
+            <p data-i18n="welcomeTileCookiesBody">See every cookie across every site, search, edit values in place, and toggle flags. JWT-shaped cookies decode inline; CHIPS (partitioned) cookies are flagged and round-trip correctly. Six encoding helpers above the value field: base64, URL, JSON.</p>
+          </article>
+          <article class="tile">
+            <div class="tile-icon">💾</div>
+            <h3 data-i18n="welcomeTileStorageTitle">Local & Session Storage</h3>
+            <p data-i18n="welcomeTileStorageBody">CRUD for both web-storage APIs, with refresh-token-shaped key detection. In "All open tabs" mode, entries from every open tab are merged with origin labels — see at a glance which site is storing what.</p>
+          </article>
+          <article class="tile">
+            <div class="tile-icon">🗃️</div>
+            <h3 data-i18n="welcomeTileIDBTitle">IndexedDB editor</h3>
+            <p data-i18n="welcomeTileIDBBody">The hardest store to inspect through normal browser tools. List databases, expand records to edit JSON, add new records, delete safely. Embedded JWTs (like MSAL cache entries) get an inline decoder + re-signer that patches the new token back at the right JSON path.</p>
+          </article>
+          <article class="tile">
+            <div class="tile-icon">🌐</div>
+            <h3 data-i18n="welcomeTileNetworkTitle">Network capture</h3>
+            <p data-i18n="welcomeTileNetworkBody">Passive observer of HTTP(S) headers via the chrome.webRequest API. Captures Authorization headers, Set-Cookie responses, custom auth headers, token-endpoint requests. Optional deep capture via chrome.debugger reads response bodies too — opt-in, per tab.</p>
+          </article>
+          <article class="tile">
+            <div class="tile-icon">⚒️</div>
+            <h3 data-i18n="welcomeTileWorkbenchTitle">Request Workbench</h3>
+            <p data-i18n="welcomeTileWorkbenchBody">Expand any captured request and edit everything: method, URL, query params, headers, body, credentials, redirect mode, referrer, integrity, keepalive, timeout. Send and see the response inline. Repeat N times for race-condition probes. Round-trips with curl: Copy as curl / Import curl.</p>
+          </article>
+          <article class="tile">
+            <div class="tile-icon">🔑</div>
+            <h3 data-i18n="welcomeTileJwtTitle">JWT toolkit</h3>
+            <p data-i18n="welcomeTileJwtBody">Decode every JWT to its claims. Edit and re-sign with HMAC, or generate attack variants categorised as recon, test, or attack (alg=none, alg confusion, kid injection, claim tampering). Replay each variant against the original endpoint. HMAC brute-force for HS256/384/512.</p>
+          </article>
+          <article class="tile">
+            <div class="tile-icon">🟦</div>
+            <h3 data-i18n="welcomeTileEntraTitle">Microsoft Entra / FOCI</h3>
+            <p data-i18n="welcomeTileEntraBody">For Entra (Azure AD) tokens specifically: identifies audience, scope, tenant, FOCI family membership. Authenticated recon against 26 Microsoft endpoints across 5 audience groups. FOCI refresh-token exchange with 13 pre-filled first-party clients for lateral pivots.</p>
+          </article>
+          <article class="tile">
+            <div class="tile-icon">🛡️</div>
+            <h3 data-i18n="welcomeTileAuditTitle">Audit</h3>
+            <p data-i18n="welcomeTileAuditBody">Role-aware audit: cookies are classified as auth / csrf / analytics / functional, and findings tailored to the class (an analytics cookie without HttpOnly is informational, an auth cookie without HttpOnly is high severity). Every finding shows the source domain. JSON export for reports.</p>
+          </article>
+          <article class="tile">
+            <div class="tile-icon">📸</div>
+            <h3 data-i18n="welcomeTileSnapshotsTitle">Snapshots & Profiles</h3>
+            <p data-i18n="welcomeTileSnapshotsBody">Capture the full storage state of a site and restore it later. Profiles bundle cookies + storage and can be transplanted across domains with optional remapping (e.g. dev.example.com → staging.example.com). Import / export as JSON.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="workflows">
+        <h2 data-i18n="welcomeWorkflows">Common workflows</h2>
+        <div class="workflow-list">
+          <div class="workflow">
+            <span class="workflow-tag" data-i18n="welcomeWorkflowsTag">I want to…</span>
+            <p data-i18n="welcomeWorkflow1">Decode a JWT I see in localStorage. Click the Tokens tab — every JWT-shaped value across cookies, storage, network, and IndexedDB is collected with one source per row. Click any token to decode.</p>
+          </div>
+          <div class="workflow">
+            <span class="workflow-tag" data-i18n="welcomeWorkflowsTag">I want to…</span>
+            <p data-i18n="welcomeWorkflow2">Replay a request with a different bearer token. Network tab → expand the captured request → click 🔑 Use captured token. Pick from any detected token; the Authorization header swaps. Hit Send.</p>
+          </div>
+          <div class="workflow">
+            <span class="workflow-tag" data-i18n="welcomeWorkflowsTag">I want to…</span>
+            <p data-i18n="welcomeWorkflow3">Check what a stolen refresh token can reach. Tokens tab → click the RT → FOCI exchange. Pre-fills with 13 known first-party Microsoft client IDs. Pick one and you'll see an access token for that audience.</p>
+          </div>
+          <div class="workflow">
+            <span class="workflow-tag" data-i18n="welcomeWorkflowsTag">I want to…</span>
+            <p data-i18n="welcomeWorkflow4">Audit a multi-tenant site for cookie security. Scope picker → All open tabs → Audit tab. Every finding is labelled with its source domain so you can export the JSON and pivot the report by host.</p>
+          </div>
+          <div class="workflow">
+            <span class="workflow-tag" data-i18n="welcomeWorkflowsTag">I want to…</span>
+            <p data-i18n="welcomeWorkflow5">Save my dev session before clearing storage. Snapshots tab → "Capture current state". Restore later from the same tab. Profiles let you do the same across domains with optional cookie-domain remapping.</p>
+          </div>
+          <div class="workflow">
+            <span class="workflow-tag" data-i18n="welcomeWorkflowsTag">I want to…</span>
+            <p data-i18n="welcomeWorkflow6">Brute-force an HS256 JWT signing secret. Tokens tab → click the JWT → JWT toolkit → Brute-force HMAC secret. Default top-1000 wordlist or paste your own. Hits show the cracked secret inline.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="perms">
+        <h2 data-i18n="welcomePermissions">Permissions, explained</h2>
+        <p class="perms-intro" data-i18n="welcomePermsIntro">
+          AuthForge requests the following permissions. Each one is justified
+          by a specific feature; nothing is asked for "just in case". The full
+          source is readable and every privileged operation goes through a
+          single dispatcher in <code>background/service-worker.js</code>.
+        </p>
+        <div class="perms-grid">
+          <div class="perm">
+            <code>cookies</code>
+            <p data-i18n="welcomePermCookies">Read, create, modify, delete cookies. The whole Cookies tab.</p>
+          </div>
+          <div class="perm">
+            <code>storage</code>
+            <p data-i18n="welcomePermStorage">Persist settings, snapshots, profiles via <code>chrome.storage</code>. All local.</p>
+          </div>
+          <div class="perm">
+            <code>tabs</code>
+            <p data-i18n="welcomePermTabs">Identify which tab to operate on. Required for current-tab and all-tabs scopes.</p>
+          </div>
+          <div class="perm">
+            <code>activeTab</code>
+            <p data-i18n="welcomePermActiveTab">Temporary scripting access to the tab you opened AuthForge on.</p>
+          </div>
+          <div class="perm">
+            <code>scripting</code>
+            <p data-i18n="welcomePermScripting">Inject reader scripts into the page MAIN world for LS / SS / IDB. Also: Workbench replay.</p>
+          </div>
+          <div class="perm">
+            <code>sidePanel</code>
+            <p data-i18n="welcomePermSidePanel">Alternative UI surface for users who prefer the side panel over the toolbar popup.</p>
+          </div>
+          <div class="perm">
+            <code>webRequest</code>
+            <p data-i18n="welcomePermWebRequest">Observe-only HTTP(S) headers. No blocking, no modification. The Network tab needs this.</p>
+          </div>
+          <div class="perm">
+            <code>debugger</code>
+            <p data-i18n="welcomePermDebugger">Opt-in per tab. Reads response bodies via CDP. Shows Chrome's yellow "debugging" banner.</p>
+          </div>
+          <div class="perm wide">
+            <code>host_permissions: &lt;all_urls&gt;</code>
+            <p data-i18n="welcomePermAllUrls">Cross-site analysis tool — AuthForge needs to operate on whichever site you're currently inspecting. It does not contact any remote endpoint under the author's control. Cross-domain actions are user-initiated only. The Microsoft Graph recon feature talks to Microsoft-owned hosts only via a static allowlist in the service worker.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="privacy">
+        <h2 data-i18n="welcomePrivacy">Privacy in one sentence</h2>
+        <p class="privacy-sentence" data-i18n="welcomePrivacySentence">
+          AuthForge runs entirely in your browser, contacts no remote endpoint
+          under the author's control, has no analytics or telemetry, and
+          stores nothing outside <code>chrome.storage.local</code> (your
+          machine, your profile).
+        </p>
+      </section>
+
+      <footer class="footer">
+        <div class="footer-actions">
+          <button class="btn primary" id="open-popup-2" data-i18n="welcomeOpenAuthForge">Open AuthForge ›</button>
+          <button class="btn ghost" id="close-tab" data-i18n="welcomeFooterCloseTab">Close this tab</button>
+        </div>
+        <div class="footer-meta">
+          <span data-i18n="welcomeFooterVersion">AuthForge v1.0.0</span>
+          <span class="dot">·</span>
+          <a href="#" id="open-readme" data-i18n="welcomeFooterReadme">Full documentation (README)</a>
+        </div>
+      </footer>
+    </main>
+  </body>
+</html>

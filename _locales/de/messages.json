@@ -1,0 +1,251 @@
+{
+  "extName": {
+    "message": "AuthForge - Cookie- & Token-Toolkit"
+  },
+  "extShortName": {
+    "message": "AuthForge"
+  },
+  "extDescription": {
+    "message": "Web-Auth-Artefakte inspizieren, bearbeiten und erneut senden. Cookies, localStorage, sessionStorage, IndexedDB, JWTs (mit Microsoft-Entra-Unterstützung) und aufgezeichnete Anfragen."
+  },
+  "actionDefaultTitle": {
+    "message": "AuthForge"
+  },
+  "openInWideWindow": {
+    "message": "In voller Breite öffnen"
+  },
+  "openOptions": {
+    "message": "Einstellungen"
+  },
+  "viewOnGithub": {
+    "message": "Quellcode auf GitHub ansehen"
+  },
+  "tabCookies": {
+    "message": "Cookies"
+  },
+  "tabLocalStorage": {
+    "message": "Local"
+  },
+  "tabSessionStorage": {
+    "message": "Session"
+  },
+  "tabIndexedDB": {
+    "message": "IDB"
+  },
+  "tabTokens": {
+    "message": "Tokens"
+  },
+  "tabNetwork": {
+    "message": "Netzwerk"
+  },
+  "tabAudit": {
+    "message": "Audit"
+  },
+  "tabSnapshots": {
+    "message": "Snapshots"
+  },
+  "scopeCurrentTab": {
+    "message": "📍 Aktueller Tab"
+  },
+  "scopeAllDomains": {
+    "message": "🌐 Alle offenen Tabs (Cookies + Storage)"
+  },
+  "scopeCustomUrl": {
+    "message": "🔗 Eigene URL…"
+  },
+  "btnSave": {
+    "message": "Speichern"
+  },
+  "btnDelete": {
+    "message": "Löschen"
+  },
+  "btnCancel": {
+    "message": "Abbrechen"
+  },
+  "btnCopy": {
+    "message": "Kopieren"
+  },
+  "btnAdd": {
+    "message": "Hinzufügen"
+  },
+  "btnApply": {
+    "message": "Anwenden"
+  },
+  "btnReset": {
+    "message": "Original wiederherstellen"
+  },
+  "btnSend": {
+    "message": "▶ Senden"
+  },
+  "searchPlaceholder": {
+    "message": "Nach Name, Wert, Domain suchen…"
+  },
+  "emptyNoCookies": {
+    "message": "Keine Cookies"
+  },
+  "emptyNoCookiesDetail": {
+    "message": "Keine Cookies im Browser. (Oder Berechtigungen der Erweiterung sind eingeschränkt.)"
+  },
+  "emptyNoAudit": {
+    "message": "Keine Probleme gefunden"
+  },
+  "emptyNoTokens": {
+    "message": "Keine Tokens erkannt"
+  },
+  "emptyNoNetwork": {
+    "message": "Bisher keine Netzwerkanfragen erfasst"
+  },
+  "loadingTitle": {
+    "message": "Lädt…"
+  },
+  "loadingDetail": {
+    "message": "Service Worker wird gestartet; Cookies / Storage / Netzwerk-Aufzeichnungen werden gelesen."
+  },
+  "welcomeTitle": {
+    "message": "Willkommen bei AuthForge"
+  },
+  "welcomeTagline": {
+    "message": "Untersuchen, ändern und wiederholen Sie jedes Authentifizierungs-Artefakt, das Ihr Browser sieht — Cookies, Web Storage, IndexedDB, JWTs und Live-Netzwerkverkehr — in einer einzigen tastaturfreundlichen Oberfläche."
+  },
+  "welcomeOpenAuthForge": {
+    "message": "AuthForge öffnen ›"
+  },
+  "welcomeTakeTour": {
+    "message": "Rundgang starten"
+  },
+  "welcomeMetaNoTel": {
+    "message": "Keine Telemetrie · alles lokal · Open Source"
+  },
+  "welcomeKicker": {
+    "message": "AuthForge vereint, wofür man sonst sechs separate Tools brauchen würde — den Application-Tab in den DevTools, einen JWT-Debugger, einen Request-Replay, einen Netzwerk-Sniffer, einen JWT-Angriffsgenerator und einen Cookie-Editor — in einem zusammenhängenden Arbeitsbereich."
+  },
+  "welcomeWhatYouCanDo": {
+    "message": "Was Sie tun können"
+  },
+  "welcomeTileCookiesTitle": {
+    "message": "Cookies"
+  },
+  "welcomeTileCookiesBody": {
+    "message": "Sehen Sie alle Cookies aller Websites, durchsuchen Sie sie, bearbeiten Sie Werte direkt und schalten Sie Flags um. JWT-förmige Cookies werden inline dekodiert; CHIPS-Cookies (partitioniert) werden markiert und korrekt zurückgeschrieben. Sechs Encoding-Helfer über dem Wertfeld: base64, URL, JSON."
+  },
+  "welcomeTileStorageTitle": {
+    "message": "Local & Session Storage"
+  },
+  "welcomeTileStorageBody": {
+    "message": "Volles CRUD für beide Web-Storage-APIs, mit Erkennung refresh-token-ähnlicher Schlüssel. Im Modus „Alle offenen Tabs“ werden Einträge aus jedem Tab mit Origin-Labels zusammengeführt — auf einen Blick sehen, welche Website was speichert."
+  },
+  "welcomeTileIDBTitle": {
+    "message": "IndexedDB-Editor"
+  },
+  "welcomeTileIDBBody": {
+    "message": "Der mit normalen Browser-Tools am schwierigsten zu untersuchende Speicher. Datenbanken auflisten, Datensätze aufklappen zum JSON-Bearbeiten, neue Datensätze hinzufügen, sicher löschen. Eingebettete JWTs (etwa MSAL-Cache-Einträge) erhalten einen inline Decoder + Re-Signer, der das neue Token am richtigen JSON-Pfad zurückschreibt."
+  },
+  "welcomeTileNetworkTitle": {
+    "message": "Netzwerk-Erfassung"
+  },
+  "welcomeTileNetworkBody": {
+    "message": "Passiver Beobachter von HTTP(S)-Headern über die chrome.webRequest-API. Erfasst Authorization-Header, Set-Cookie-Antworten, benutzerdefinierte Auth-Header und Token-Endpoint-Anfragen. Optionale Tiefen-Erfassung über chrome.debugger liest auch Response-Bodies — Opt-in pro Tab."
+  },
+  "welcomeTileWorkbenchTitle": {
+    "message": "Request-Workbench"
+  },
+  "welcomeTileWorkbenchBody": {
+    "message": "Jede erfasste Anfrage aufklappen und alles bearbeiten: Methode, URL, Query-Parameter, Header, Body, Credentials, Redirect-Modus, Referrer, Integrity, Keepalive, Timeout. Senden und Antwort inline anzeigen. N-mal wiederholen für Race-Condition-Tests. Round-Trip mit curl: Als curl kopieren / curl importieren."
+  },
+  "welcomeTileJwtTitle": {
+    "message": "JWT-Toolkit"
+  },
+  "welcomeTileJwtBody": {
+    "message": "Jedes JWT in seine Claims zerlegen. Bearbeiten und mit HMAC neu signieren oder Angriffs-Varianten generieren, eingeteilt in Recon, Test oder Attack (alg=none, Alg-Confusion, Kid-Injection, Claim-Manipulation). Jede Variante gegen den Original-Endpunkt wiederholen. HMAC-Brute-Force für HS256/384/512."
+  },
+  "welcomeTileEntraTitle": {
+    "message": "Microsoft Entra / FOCI"
+  },
+  "welcomeTileEntraBody": {
+    "message": "Speziell für Entra-Tokens (Azure AD): erkennt Audience, Scope, Tenant und FOCI-Familienzugehörigkeit. Authentifizierte Erkundung gegen 26 Microsoft-Endpunkte in 5 Audience-Gruppen. FOCI-Refresh-Token-Austausch mit 13 vorausgefüllten First-Party-Clients für laterale Pivots."
+  },
+  "welcomeTileAuditTitle": {
+    "message": "Audit"
+  },
+  "welcomeTileAuditBody": {
+    "message": "Rollenbewusstes Audit: Cookies werden als auth / csrf / analytics / functional klassifiziert, mit auf die Klasse zugeschnittenen Findings (ein Analytics-Cookie ohne HttpOnly ist informativ; ein Auth-Cookie ohne HttpOnly ist hohe Severity). Jedes Finding zeigt die Quell-Domain. JSON-Export für Berichte."
+  },
+  "welcomeTileSnapshotsTitle": {
+    "message": "Snapshots & Profile"
+  },
+  "welcomeTileSnapshotsBody": {
+    "message": "Den vollständigen Speicherzustand einer Website erfassen und später wiederherstellen. Profile bündeln Cookies + Storage und können mit optionalem Remapping zwischen Domains übertragen werden (z. B. dev.example.com → staging.example.com). Import / Export als JSON."
+  },
+  "welcomeWorkflows": {
+    "message": "Häufige Workflows"
+  },
+  "welcomeWorkflowsTag": {
+    "message": "Ich möchte…"
+  },
+  "welcomeWorkflow1": {
+    "message": "Ein JWT dekodieren, das ich in localStorage sehe. Tokens-Tab anklicken — jeder JWT-förmige Wert aus Cookies, Storage, Netzwerk und IndexedDB wird mit einer Quelle pro Zeile gesammelt. Auf ein beliebiges Token klicken, um es zu dekodieren."
+  },
+  "welcomeWorkflow2": {
+    "message": "Eine Anfrage mit einem anderen Bearer-Token wiederholen. Netzwerk-Tab → erfasste Anfrage aufklappen → 🔑 Erfasstes Token verwenden klicken. Aus einem der erkannten Tokens wählen; der Authorization-Header wird ersetzt. Senden drücken."
+  },
+  "welcomeWorkflow3": {
+    "message": "Prüfen, was ein gestohlenes Refresh-Token erreichen kann. Tokens-Tab → RT anklicken → FOCI-Austausch. Vorausgefüllt mit 13 bekannten First-Party-Microsoft-Client-IDs. Eines auswählen und Sie erhalten ein Access-Token für diese Audience."
+  },
+  "welcomeWorkflow4": {
+    "message": "Cookie-Sicherheit auf einer Multi-Tenant-Site auditieren. Scope-Auswahl → Alle offenen Tabs → Audit-Tab. Jedes Finding ist mit seiner Quell-Domain gekennzeichnet, sodass Sie das JSON exportieren und den Bericht nach Host pivotieren können."
+  },
+  "welcomeWorkflow5": {
+    "message": "Meine Dev-Session vor dem Storage-Löschen sichern. Snapshots-Tab → „Aktuellen Zustand erfassen“. Später vom selben Tab wiederherstellen. Profile machen dasselbe domain-übergreifend, mit optionalem Cookie-Domain-Remapping."
+  },
+  "welcomeWorkflow6": {
+    "message": "Einen HS256-JWT-Signaturschlüssel knacken. Tokens-Tab → JWT anklicken → JWT-Toolkit → HMAC-Brute-Force. Standard-Top-1000-Wordlist oder eigene einfügen. Treffer zeigen das geknackte Geheimnis inline."
+  },
+  "welcomePermissions": {
+    "message": "Berechtigungen, erklärt"
+  },
+  "welcomePermsIntro": {
+    "message": "AuthForge fragt die folgenden Berechtigungen an. Jede wird durch eine konkrete Funktion gerechtfertigt; nichts wird „auf Verdacht“ angefordert. Der vollständige Quellcode ist lesbar, und jede privilegierte Operation läuft durch einen einzigen Dispatcher in background/service-worker.js."
+  },
+  "welcomePermCookies": {
+    "message": "Cookies lesen, erstellen, ändern, löschen. Der gesamte Cookies-Tab."
+  },
+  "welcomePermStorage": {
+    "message": "Einstellungen, Snapshots, Profile via chrome.storage persistieren. Alles lokal."
+  },
+  "welcomePermTabs": {
+    "message": "Identifizieren, auf welchem Tab gearbeitet wird. Für die Scopes „aktueller Tab“ und „alle Tabs“ nötig."
+  },
+  "welcomePermActiveTab": {
+    "message": "Temporärer Skript-Zugriff auf den Tab, in dem AuthForge geöffnet wurde."
+  },
+  "welcomePermScripting": {
+    "message": "Lese-Skripte in die MAIN-Welt der Seite injizieren für LS / SS / IDB. Auch: Workbench-Replay."
+  },
+  "welcomePermSidePanel": {
+    "message": "Alternative UI-Oberfläche für Nutzer, die das Side Panel dem Toolbar-Popup vorziehen."
+  },
+  "welcomePermWebRequest": {
+    "message": "Nur-beobachtend für HTTP(S)-Header. Kein Blockieren, kein Ändern. Der Netzwerk-Tab braucht das."
+  },
+  "welcomePermDebugger": {
+    "message": "Opt-in pro Tab. Liest Response-Bodies via CDP. Zeigt Chromes gelbes „Debugging“-Banner."
+  },
+  "welcomePermAllUrls": {
+    "message": "Site-übergreifendes Analyse-Tool — AuthForge muss auf jeder Site arbeiten können, die Sie gerade untersuchen. Es kontaktiert keinen Remote-Endpunkt unter Kontrolle des Autors. Cross-Domain-Aktionen werden nur vom Nutzer initiiert. Die Microsoft-Graph-Recon-Funktion spricht ausschließlich mit Microsoft-eigenen Hosts über eine statische Allowlist im Service Worker."
+  },
+  "welcomePrivacy": {
+    "message": "Datenschutz in einem Satz"
+  },
+  "welcomePrivacySentence": {
+    "message": "AuthForge läuft vollständig im Browser, kontaktiert keinen Remote-Endpunkt unter Kontrolle des Autors, hat keine Analytics oder Telemetrie und speichert nichts außerhalb von chrome.storage.local (Ihr Rechner, Ihr Profil)."
+  },
+  "welcomeFooterCloseTab": {
+    "message": "Diesen Tab schließen"
+  },
+  "welcomeFooterReadme": {
+    "message": "Vollständige Dokumentation (README)"
+  },
+  "welcomeFooterVersion": {
+    "message": "AuthForge v1.0.0"
+  }
+}
