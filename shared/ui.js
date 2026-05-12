@@ -4006,16 +4006,37 @@ export class AuthForgeApp {
       )
     );
 
-    // Filter input
+    // Filter input. Two bugs were here before:
+    //   1. Every keystroke called renderActiveTab() which destroys the input
+    //      element — focus jumped out after each character, forcing the user
+    //      to re-click to type a second one.
+    //   2. Every keystroke also fired a SW network.list call — out-of-order
+    //      responses could overwrite a more recent filter's results.
+    // Fixed by (a) debouncing the re-fetch by 150ms and (b) marking the
+    // input so we can find the re-created one after renderActiveTab and
+    // restore focus + cursor position.
     const filterInput = h('input', {
       class: 'input',
+      'data-role': 'network-filter',
       placeholder: 'Filter by host or URL substring…',
       value: this.networkHostFilter,
       style: { maxWidth: '260px' },
-      oninput: async (e) => {
+      oninput: (e) => {
         this.networkHostFilter = e.target.value;
-        await this.loadNetwork();
-        this.renderActiveTab();
+        const cursorPos = e.target.selectionStart;
+        clearTimeout(this._networkFilterTimer);
+        this._networkFilterTimer = setTimeout(async () => {
+          await this.loadNetwork();
+          this.renderActiveTab();
+          // Re-find the (newly created) input and restore focus + cursor.
+          const refocus = this.refs.body?.querySelector(
+            'input[data-role="network-filter"]'
+          );
+          if (refocus) {
+            refocus.focus();
+            try { refocus.setSelectionRange(cursorPos, cursorPos); } catch {}
+          }
+        }, 150);
       },
     });
     ctl.appendChild(filterInput);
